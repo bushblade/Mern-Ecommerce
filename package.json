@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "express": "^4.17.1",
     "react-router-dom": "^5.2.0"
-  }
+  },
+  "name": "pro-shop",
+  "version": "1.0.0",
+  "description": "Mern Shopping cart app",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WA",
+  "license": "MIT"
 }
