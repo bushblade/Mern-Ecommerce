@@ -6,7 +6,18 @@ module.exports = {
     public: { url: '/', static: true },
     src: { url: '/dist' },
   },
-  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
+  plugins: [
+    '@snowpack/plugin-react-refresh',
+    '@snowpack/plugin-dotenv',
+    [
+      '@snowpack/plugin-run-script',
+      {
+        cmd: 'eslint src --ext .js,jsx,.ts,.tsx',
+        // Optional: Use npm package "eslint-watch" to run on every file change
+        watch: 'esw -w --clear src --ext .js,jsx,.ts,.tsx',
+      },
+    ],
+  ],
   routes: [
     {
       src: '/api/.*',

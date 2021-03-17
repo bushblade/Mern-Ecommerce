@@ -18,9 +18,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "indent": ["error", 2],
-    "flatTernaryExpressions": true,
-    "offsetTernaryExpressions": true,
+    "indent": ["error", 2, { "ignoredNodes": ["ConditionalExpression"] }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"]

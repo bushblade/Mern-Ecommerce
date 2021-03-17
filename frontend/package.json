@@ -6,7 +6,9 @@
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
+    "@snowpack/plugin-run-script": "^2.3.0",
     "axios": "^0.21.1",
+    "eslint-watch": "^7.0.0",
     "http-proxy": "^1.18.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

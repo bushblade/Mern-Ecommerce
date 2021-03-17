@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import Rating from '../components/Rating'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import Rating from '../components/Rating'
 
 function ProductScreen({ match }) {
   const [product, setProduct] = useState(null)
 
   useEffect(() => {
-    axios.get('/api/products').then(({ data }) => {
-      setProduct(data.find((p) => p._id === match.params.id))
+    axios.get(`/api/products/${match.params.id}`).then(({ data }) => {
+      setProduct(data)
     })
-  }, [])
+  }, [match.params.id])
 
   if (!product) return <h1>Fetching product</h1>
 
@@ -79,6 +80,10 @@ function ProductScreen({ match }) {
       </Row>
     </>
   )
+}
+
+ProductScreen.propTypes = {
+  match: PropTypes.object.isRequired,
 }
 
 export default ProductScreen
