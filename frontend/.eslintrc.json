@@ -19,6 +19,8 @@
   "plugins": ["react"],
   "rules": {
     "indent": ["error", 2],
+    "flatTernaryExpressions": true,
+    "offsetTernaryExpressions": true,
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"]
