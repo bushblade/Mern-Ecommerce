@@ -3,13 +3,10 @@
     "start": "snowpack dev",
     "build": "snowpack build",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx}\""
+    "lint": "eslint \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
-    "@snowpack/plugin-run-script": "^2.3.0",
     "axios": "^0.21.1",
-    "eslint-watch": "^7.0.0",
-    "http-proxy": "^1.18.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
@@ -19,9 +16,12 @@
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.0.5",
     "@snowpack/plugin-react-refresh": "^2.4.0",
+    "@snowpack/plugin-run-script": "^2.3.0",
     "eslint": "^7.22.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-watch": "^7.0.0",
+    "http-proxy": "^1.18.1",
     "prettier": "^2.2.1",
     "snowpack": "^3.0.13"
   }
