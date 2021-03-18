@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "react-router-dom": "^5.2.0"
+    "express": "^4.17.1"
   },
   "name": "pro-shop",
   "version": "1.0.0",
   "description": "Mern Shopping cart app",
   "main": "backend/server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
