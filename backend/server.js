@@ -1,8 +1,8 @@
+import 'colors'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/db.js'
 import products from './data/products.js'
-import 'colors'
 
 dotenv.config()
 
