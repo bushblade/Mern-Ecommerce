@@ -2,6 +2,7 @@ import 'colors'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/db.js'
+import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
 
 dotenv.config()
@@ -12,10 +13,9 @@ const app = express()
 
 app.use('/api/products', productRoutes)
 
-app.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
+app.use(notFound)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
