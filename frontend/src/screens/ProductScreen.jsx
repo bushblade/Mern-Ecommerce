@@ -24,7 +24,7 @@ function ProductScreen({ match }) {
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
-      {loading ? (
+      {!product._id || product._id !== match.params.id ? (
         <Loader />
       ) : error ? (
         <Message variant='danger' message={error} />

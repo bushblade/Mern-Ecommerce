@@ -1,6 +1,6 @@
 import {
   PRODUCT_DETAILS_FAIL,
-  PRODUCT_DETAILS_REQUEST,
+  // PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_LIST_FAIL,
   // PRODUCT_LIST_REQUEST,
@@ -29,7 +29,7 @@ export function listProducts() {
 export function listProductDetails(id) {
   return async function (dispatch) {
     try {
-      dispatch({ type: PRODUCT_DETAILS_REQUEST })
+      // dispatch({ type: PRODUCT_DETAILS_REQUEST })
       const { data } = await api.get(`/products/${id}`)
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,

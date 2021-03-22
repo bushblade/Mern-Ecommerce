@@ -2,7 +2,7 @@ import {
   // PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
-  PRODUCT_DETAILS_REQUEST,
+  // PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants'
@@ -28,8 +28,8 @@ export function productDetailsReducer(
   { type, payload }
 ) {
   switch (type) {
-    case PRODUCT_DETAILS_REQUEST:
-      return { ...state, loading: true }
+    // case PRODUCT_DETAILS_REQUEST:
+    //   return { ...state, loading: true }
     case PRODUCT_DETAILS_SUCCESS:
       return { loading: false, product: payload }
     case PRODUCT_DETAILS_FAIL:
