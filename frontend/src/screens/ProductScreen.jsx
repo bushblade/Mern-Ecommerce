@@ -1,15 +1,15 @@
-import axios from 'axios'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Rating from '../components/Rating'
+import api from '../utils/api'
 
 function ProductScreen({ match }) {
   const [product, setProduct] = useState(null)
 
   useEffect(() => {
-    axios.get(`/api/products/${match.params.id}`).then(({ data }) => {
+    api.get(`/products/${match.params.id}`).then(({ data }) => {
       setProduct(data)
     })
   }, [match.params.id])
