@@ -1,5 +1,5 @@
 import {
-  PRODUCT_LIST_REQUEST,
+  // PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_DETAILS_REQUEST,
@@ -12,8 +12,8 @@ export function productListReducer(
   { type, payload }
 ) {
   switch (type) {
-    case PRODUCT_LIST_REQUEST:
-      return { loading: true, products: [] }
+    // case PRODUCT_LIST_REQUEST:
+    //   return { ...state, loading: true }
     case PRODUCT_LIST_SUCCESS:
       return { loading: false, products: payload }
     case PRODUCT_LIST_FAIL:

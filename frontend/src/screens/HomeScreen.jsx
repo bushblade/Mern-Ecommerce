@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 function HomeScreen() {
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
-  const { products, error, loading } = productList
+  const { products, error } = productList
 
   useEffect(() => {
     dispatch(listProducts())
@@ -18,7 +18,7 @@ function HomeScreen() {
   return (
     <>
       <h1>Latest Products</h1>
-      {loading ? (
+      {products.length === 0 ? (
         <Loader />
       ) : error ? (
         <Message variant='danger' message={error} />
