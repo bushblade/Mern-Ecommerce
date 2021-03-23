@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
-import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { listProductDetails } from '../actions/productActions'
@@ -8,14 +8,21 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Rating from '../components/Rating'
 
-function ProductScreen({ match }) {
+function ProductScreen({ match, history }) {
+  const [qty, setQty] = useState(0)
   const productDetails = useSelector((state) => state.productDetails)
   const dispatch = useDispatch()
-  const { product, loading, error } = productDetails
+  const { product, error } = productDetails
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
   }, [match.params.id, dispatch])
+
+  const addToCartHandler = () => {
+    if (qty > 0) {
+      history.push(`/cart/${match.params.id}?qty=${qty}`)
+    }
+  }
 
   if (!product) return <h1>Fetching product</h1>
 
@@ -69,8 +76,33 @@ function ProductScreen({ match }) {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
+                {product.countInStock > 0 ? (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as='select'
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {Array.from({ length: product.countInStock }).map(
+                            (_, i) => (
+                              <option key={`option${i + 1}`} value={i + 1}>
+                                {i + 1}
+                              </option>
+                            )
+                          )}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                ) : null}
+
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
                     disabled={product.countInStock === 0}
@@ -89,6 +121,7 @@ function ProductScreen({ match }) {
 
 ProductScreen.propTypes = {
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default ProductScreen
