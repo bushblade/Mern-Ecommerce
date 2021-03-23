@@ -9,7 +9,7 @@ import Message from '../components/Message'
 import Rating from '../components/Rating'
 
 function ProductScreen({ match, history }) {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const productDetails = useSelector((state) => state.productDetails)
   const dispatch = useDispatch()
   const { product, error } = productDetails
@@ -19,7 +19,7 @@ function ProductScreen({ match, history }) {
   }, [match.params.id, dispatch])
 
   const addToCartHandler = () => {
-    if (qty > 0) {
+    if (product.countInStock) {
       history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
   }
