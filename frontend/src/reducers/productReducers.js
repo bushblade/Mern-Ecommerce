@@ -12,12 +12,10 @@ export function productListReducer(
   { type, payload }
 ) {
   switch (type) {
-    // case PRODUCT_LIST_REQUEST:
-    //   return { ...state, loading: true }
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: payload }
+      return { products: payload }
     case PRODUCT_LIST_FAIL:
-      return { loading: false, error: payload }
+      return { error: payload }
     default:
       return state
   }
@@ -28,12 +26,10 @@ export function productDetailsReducer(
   { type, payload }
 ) {
   switch (type) {
-    // case PRODUCT_DETAILS_REQUEST:
-    //   return { ...state, loading: true }
     case PRODUCT_DETAILS_SUCCESS:
-      return { loading: false, product: payload }
+      return { product: payload }
     case PRODUCT_DETAILS_FAIL:
-      return { ...state, loading: false, error: payload }
+      return { ...state, error: payload }
     default:
       return state
   }
