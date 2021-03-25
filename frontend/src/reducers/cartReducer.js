@@ -1,4 +1,8 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
+import { CART_ADD_ITEM } from '../constants/cartConstants'
+
+// TODO
+// increment item in cart when added
+// rather than overwrite with payload
 
 export function cartReducer(
   state = {
