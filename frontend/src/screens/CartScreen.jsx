@@ -50,9 +50,10 @@ function CartScreen({ match, location, history }) {
                     <Form.Control
                       as='select'
                       value={item.qty}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        console.log(e.target.value, item._id)
                         dispatch(addToCart(item._id, Number(e.target.value)))
-                      }
+                      }}
                     >
                       {Array.from({ length: item.countInStock }).map((_, i) => (
                         <option key={`option${i + 1}`} value={i + 1}>

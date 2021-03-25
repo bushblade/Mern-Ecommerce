@@ -16,7 +16,7 @@ export function cartReducer(
         return {
           ...state,
           cartItems: state.cartItems.map((item) =>
-            item.product === payload.product ? payload : item
+            item._id === payload._id ? payload : item
           ),
         }
       } else {
