@@ -12,12 +12,13 @@ function CartScreen({ match, location, history }) {
   const qty = location.search
     ? Number(new URLSearchParams(location.search).get('qty'))
     : 1
+
   const dispatch = useDispatch()
 
   const cartItems = useSelector((state) => state.cart.cartItems)
 
   useEffect(() => {
-    if (productId) {
+    if (productId && qty) {
       dispatch(addToCart(productId, qty))
     }
   }, [dispatch, productId, qty])
@@ -51,7 +52,6 @@ function CartScreen({ match, location, history }) {
                       as='select'
                       value={item.qty}
                       onChange={(e) => {
-                        console.log(e.target.value, item._id)
                         dispatch(addToCart(item._id, Number(e.target.value)))
                       }}
                     >

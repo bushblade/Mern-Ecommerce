@@ -8,10 +8,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
@@ -19,15 +19,15 @@
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.0.5",
-    "@snowpack/plugin-react-refresh": "^2.4.0",
+    "@snowpack/plugin-react-refresh": "^2.4.1",
     "@snowpack/plugin-run-script": "^2.3.0",
     "eslint": "^7.22.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-watch": "^7.0.0",
     "http-proxy": "^1.18.1",
     "prettier": "^2.2.1",
-    "snowpack": "^3.0.13"
+    "snowpack": "^3.1.2"
   }
 }

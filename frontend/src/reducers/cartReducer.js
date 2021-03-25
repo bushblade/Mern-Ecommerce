@@ -4,6 +4,9 @@ import { CART_ADD_ITEM } from '../constants/cartConstants'
 // increment item in cart when added
 // rather than overwrite with payload
 
+const isCurrentlyInCart = (state, payload) =>
+  state.cartItems.find((item) => item._id === payload._id)
+
 export function cartReducer(
   state = {
     cartItems: [],
@@ -12,18 +15,17 @@ export function cartReducer(
 ) {
   switch (type) {
     case CART_ADD_ITEM:
-      if (state.cartItems.find((item) => item._id === payload._id)) {
+      if (isCurrentlyInCart(state, payload)) {
         return {
           ...state,
           cartItems: state.cartItems.map((item) =>
             item._id === payload._id ? payload : item
           ),
         }
-      } else {
-        return {
-          ...state,
-          cartItems: [...state.cartItems, payload],
-        }
+      }
+      return {
+        ...state,
+        cartItems: [...state.cartItems, payload],
       }
 
     default:
