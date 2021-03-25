@@ -5,7 +5,7 @@ import { CART_ADD_ITEM } from '../constants/cartConstants'
 // addToCart doesn't need to request product
 // from API as we already have it
 export function addToCart(id, qty) {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     const { data } = await api.get(`/products/${id}`)
     dispatch({
       type: CART_ADD_ITEM,
@@ -14,6 +14,5 @@ export function addToCart(id, qty) {
         qty,
       },
     })
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
   }
 }

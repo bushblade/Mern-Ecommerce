@@ -12,7 +12,7 @@ export function cartReducer(
 ) {
   switch (type) {
     case CART_ADD_ITEM:
-      if (state.cartItems.find((item) => item.product === payload.product)) {
+      if (state.cartItems.find((item) => item._id === payload._id)) {
         return {
           ...state,
           cartItems: state.cartItems.map((item) =>

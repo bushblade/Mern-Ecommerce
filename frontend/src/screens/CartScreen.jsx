@@ -6,8 +6,6 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart } from '../actions/cartActions'
 
-// Why are we adding to cart with URL query?
-
 function CartScreen({ match, location, history }) {
   const productId = match.params.id
 
@@ -17,7 +15,6 @@ function CartScreen({ match, location, history }) {
   const dispatch = useDispatch()
 
   const cartItems = useSelector((state) => state.cart.cartItems)
-  console.log(cartItems)
 
   useEffect(() => {
     if (productId) {
@@ -25,10 +22,63 @@ function CartScreen({ match, location, history }) {
     }
   }, [dispatch, productId, qty])
 
+  const removeFromCartHandler = (id) => {
+    console.log('removing', id)
+  }
+
   return (
-    <div>
-      <p>Cart</p>
-    </div>
+    <Row>
+      <Col md={8}>
+        <h1>Shopping Cart</h1>
+        {cartItems.length === 0 ? (
+          <Message>
+            Your Cart is empty <Link to='/'>Go Back</Link>
+          </Message>
+        ) : (
+          <ListGroup variant='flush'>
+            {cartItems.map((item) => (
+              <ListGroup.Item key={item._id}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={item.image} alt={item.name} fluid rounded />
+                  </Col>
+                  <Col md={3}>
+                    <Link to={`/product/${item._id}`}>{item.name}</Link>
+                  </Col>
+                  <Col md={2}>{item.price}</Col>
+                  <Col md={2}>
+                    <Form.Control
+                      as='select'
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(addToCart(item._id, Number(e.target.value)))
+                      }
+                    >
+                      {Array.from({ length: item.countInStock }).map((_, i) => (
+                        <option key={`option${i + 1}`} value={i + 1}>
+                          {i + 1}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                  <Col md={2}>
+                    <Button
+                      type='button'
+                      variant='light'
+                      onClick={() => removeFromCartHandler(item._id)}
+                    >
+                      <i className='fas fa-trash'></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        )}
+      </Col>
+      <Col md={2}></Col>
+      <Col md={2}></Col>
+    </Row>
   )
 }
 

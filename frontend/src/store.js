@@ -31,4 +31,21 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleWare))
 )
 
+// subscription
+
+let currentState = store.getState()
+
+store.subscribe(() => {
+  // keep track of the previous and current state to compare changes
+  let previousState = currentState
+  currentState = store.getState()
+  // if the cartItems change - set in localStorage
+  if (previousState.cart.cartItems !== currentState.cart.cartItems) {
+    localStorage.setItem(
+      'cartItems',
+      JSON.stringify(currentState.cart.cartItems)
+    )
+  }
+})
+
 export default store
