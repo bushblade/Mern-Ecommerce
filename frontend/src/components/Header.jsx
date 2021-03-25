@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect fixed='top'>
         <Container>
           <Navbar.Brand as={Link} to='/'>
             ProShop
