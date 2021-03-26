@@ -1,5 +1,5 @@
 import api from '../utils/api'
-import { CART_ADD_ITEM } from '../constants/cartConstants'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 
 // NOTE
 // addToCart doesn't need to request product
@@ -14,5 +14,12 @@ export function addToCart(id, qty) {
         qty,
       },
     })
+  }
+}
+
+export function removeFromCart(id) {
+  return {
+    type: CART_REMOVE_ITEM,
+    payload: id,
   }
 }

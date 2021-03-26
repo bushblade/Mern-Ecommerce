@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from '../constants/cartConstants'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 
 // TODO
 // increment item in cart when added
@@ -26,6 +26,11 @@ export function cartReducer(
       return {
         ...state,
         cartItems: [...state.cartItems, payload],
+      }
+    case CART_REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item._id !== payload),
       }
 
     default:
