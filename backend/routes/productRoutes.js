@@ -1,27 +1,13 @@
 import express from 'express'
-import Product from '../models/ProductModel.js'
 
 const router = express.Router()
 
-// @desc            Fetch all products
-// @route           GET /api/products
-// @access          Public
-router.get('/', async (req, res) => {
-  const products = await Product.find({})
-  return res.json(products)
-})
+import {
+  getProducts,
+  getProductById,
+} from '../controllers/productController.js'
 
-// @desc            Fetch single product by id
-// @route           GET /api/products/:id
-// @access          Public
-router.get('/:id', async (req, res) => {
-  const product = await Product.findById(req.params.id)
-  if (product) {
-    return res.json(product)
-  } else {
-    res.status(404)
-    throw new Error('Product not found')
-  }
-})
+router.route('/').get(getProducts)
+router.route('/:id').get(getProductById)
 
 export default router
