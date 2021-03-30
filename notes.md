@@ -18,3 +18,6 @@ Fixed position Navbar - no janky content shifting on mobile
 Redux subscription for cartItems in LS - simpler less repetitive
 
 Stick with identifying product by \_id  rather than renaming as product
+
+userController sends back more specific responses for not found or wrong
+password

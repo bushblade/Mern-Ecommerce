@@ -21,7 +21,10 @@ export async function authUser(req, res) {
   }
 
   return res.json({
-    ...user.select('-password'),
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.isAdmin,
     token: null,
   })
 }
