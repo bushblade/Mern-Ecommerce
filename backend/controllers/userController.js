@@ -29,3 +29,13 @@ export async function authUser(req, res) {
     token: generateToken(user._id),
   })
 }
+
+// @desc            GET a users profile
+// @route           GET /api/users/profile
+// @access          Private
+
+export async function getUserProfile(req, res) {
+  // const user = await User.findById(req.user._id)
+  console.log('got a authenticated user', req.user)
+  res.json(req.user)
+}
