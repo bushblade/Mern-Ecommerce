@@ -4,7 +4,7 @@ import Product from '../models/ProductModel.js'
 // @route           GET /api/products
 // @access          Public
 export async function getProducts(req, res) {
-  const products = await Product.find({})
+  const products = await Product.find({}).sort({ numReviews: 'asc' })
   return res.json(products)
 }
 

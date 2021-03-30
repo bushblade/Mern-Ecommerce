@@ -4,6 +4,9 @@ Users cart should be stored in database so not mutable by client.
 
 Don't redirect to /cart when clicking Add To Cart
 
+prices in cents and convert for better calculation accuracy and formatting using
+utils/formatMoney
+
 ## Things changed 
 
 Removed loading state from productReducer for better performance and UX.
