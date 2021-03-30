@@ -4,6 +4,7 @@
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.8",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.2"
   },
   "name": "pro-shop",
