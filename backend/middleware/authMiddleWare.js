@@ -7,8 +7,8 @@ async function protect(req, res, next) {
   const authHeader = req.headers.authorization
 
   const token =
-    authHeader && authHeader.replace('Bearer ', '')
-      ? authHeader.replace('Bearer ', '')
+    authHeader && authHeader.split(' ')[1]
+      ? authHeader.split(' ')[1]
       : authCookie
 
   if (!token) {
