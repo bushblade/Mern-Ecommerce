@@ -24,6 +24,7 @@ async function protect(req, res, next) {
     next()
   } catch (err) {
     // console.error(err)
+    res.clearCookie('Bearer')
     res.status(401)
     throw new Error('Not authorized, token failed')
   }
