@@ -7,6 +7,8 @@ Don't redirect to /cart when clicking Add To Cart
 prices in cents and convert for better calculation accuracy and formatting using
 utils/formatMoney
 
+redirect in LoginScreen always evaluates to truthy
+
 ## Things changed 
 
 Removed loading state from productReducer for better performance and UX.

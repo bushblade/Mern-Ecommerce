@@ -5,6 +5,9 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants'
 
+// TODO
+// remove loading state
+
 export function userLoginReducer(state = {}, { type, payload }) {
   switch (type) {
     case USER_LOGIN_REQUEST:

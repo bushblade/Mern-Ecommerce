@@ -8,6 +8,8 @@ import {
 export function login(email, password) {
   return async function (dispatch) {
     try {
+      // TODO
+      // remove USER_LOGIN_REQUEST and loading state
       dispatch({
         type: USER_LOGIN_REQUEST,
       })
@@ -16,9 +18,6 @@ export function login(email, password) {
         type: USER_LOGIN_SUCCESS,
         payload: data,
       })
-      // TODO
-      // move this to a subscription
-      localStorage.setItem('userInfo', JSON.stringify(data))
     } catch (err) {
       dispatch({
         type: USER_LOGIN_FAIL,

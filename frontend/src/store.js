@@ -48,6 +48,13 @@ store.subscribe(() => {
       JSON.stringify(currentState.cart.cartItems)
     )
   }
+  // if the userLogin changes then set in localStorage
+  if (previousState.userLogin.userInfo !== currentState.userLogin.userInfo) {
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify(currentState.userLogin.userInfo)
+    )
+  }
 })
 
 export default store
