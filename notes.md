@@ -11,13 +11,16 @@ utils/formatMoney
 
 Removed loading state from productReducer for better performance and UX.
 
-Instance of axios in utils/api.js
+Instance of axios in utils/api.js.
 
-Fixed position Navbar - no janky content shifting on mobile
+Fixed position Navbar - no janky content shifting on mobile.
 
-Redux subscription for cartItems in LS - simpler less repetitive
+Redux subscription for cartItems in LS - simpler less repetitive.
 
-Stick with identifying product by \_id  rather than renaming as product
+Stick with identifying product by \_id  rather than renaming as product.
 
 userController sends back more specific responses for not found or wrong
-password
+password.
+
+getUserProfile doesn't need to fetch the user from the DB it already has it in
+the req from the authMiddleWare.

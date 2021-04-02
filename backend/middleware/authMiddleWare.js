@@ -2,14 +2,14 @@ import jwt from 'jsonwebtoken'
 import User from '../models/UserModel.js'
 
 async function protect(req, res, next) {
+  const authCookie = req.cookies['Bearer']
+
   const authHeader = req.headers.authorization
 
-  if (!authHeader || !authHeader.startsWith('Bearer')) {
-    res.status(401)
-    throw new Error('Not authorized, no token')
-  }
-
-  const token = authHeader.split(' ')[1]
+  const token =
+    authHeader && authHeader.replace('Bearer ', '')
+      ? authHeader.replace('Bearer ', '')
+      : authCookie
 
   if (!token) {
     res.status(401)
@@ -23,7 +23,7 @@ async function protect(req, res, next) {
 
     next()
   } catch (err) {
-    console.error(err)
+    // console.error(err)
     res.status(401)
     throw new Error('Not authorized, token failed')
   }

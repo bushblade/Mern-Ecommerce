@@ -20,13 +20,19 @@ export async function authUser(req, res) {
     res.status(401)
     throw new Error('Incorrect password')
   }
+  const token = generateToken(user._id)
+
+  res.cookie('Bearer', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  })
 
   return res.json({
     _id: user._id,
     name: user.name,
     email: user.email,
     isAdmin: user.isAdmin,
-    token: generateToken(user._id),
+    token,
   })
 }
 
@@ -35,7 +41,6 @@ export async function authUser(req, res) {
 // @access          Private
 
 export async function getUserProfile(req, res) {
-  // const user = await User.findById(req.user._id)
-  console.log('got a authenticated user', req.user)
+  // user is added to req object by authMiddleWare
   res.json(req.user)
 }

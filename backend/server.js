@@ -1,4 +1,5 @@
 import 'colors'
+import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/db.js'
@@ -12,6 +13,7 @@ connectDB()
 
 const app = express()
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
