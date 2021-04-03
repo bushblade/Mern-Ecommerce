@@ -17,9 +17,7 @@ function LoginScreen({ location }) {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
-  // NOTE this is kind of redundant as will always evaluate to truthy when we
-  // check below in the Link
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : null
 
   const submitHandler = (e) => {
     e.preventDefault()

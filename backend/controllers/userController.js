@@ -71,6 +71,15 @@ export async function registerUser(req, res) {
   })
 }
 
+// @desc            Logout a user
+// @route           DELETE /api/users/logout
+// @access          Public
+
+export function logout(req, res) {
+  res.clearCookie('Bearer')
+  res.status(204).send()
+}
+
 // @desc            GET a users profile
 // @route           GET /api/users/profile
 // @access          Private
