@@ -8,7 +8,9 @@ import {
 // TODO
 // remove loading state
 
-export function userLoginReducer(state = {}, { type, payload }) {
+const initialState = { userInfo: null }
+
+export function userLoginReducer(state = initialState, { type, payload }) {
   switch (type) {
     case USER_LOGIN_REQUEST:
       return { loading: true }
@@ -17,7 +19,7 @@ export function userLoginReducer(state = {}, { type, payload }) {
     case USER_LOGIN_FAIL:
       return { loading: false, error: payload }
     case USER_LOGOUT:
-      return {}
+      return initialState
     default:
       return state
   }

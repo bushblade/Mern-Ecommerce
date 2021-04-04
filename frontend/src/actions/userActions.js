@@ -3,6 +3,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from '../constants/userConstants'
 
 export function login(email, password) {
@@ -24,5 +25,12 @@ export function login(email, password) {
         payload: err.response?.data?.message || err.message,
       })
     }
+  }
+}
+
+export function logout() {
+  return async function (dispatch) {
+    await api.delete('/users/logout')
+    dispatch({ type: USER_LOGOUT })
   }
 }

@@ -87,7 +87,8 @@ function ProductScreen({ match, history }) {
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
                         >
-                          {Array.from({ length: product.countInStock }).map(
+                          {Array.from(
+                            { length: product.countInStock },
                             (_, i) => (
                               <option key={`option${i + 1}`} value={i + 1}>
                                 {i + 1}
