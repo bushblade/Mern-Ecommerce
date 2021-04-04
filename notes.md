@@ -10,6 +10,9 @@ utils/formatMoney
 redirect in LoginScreen always evaluates to truthy so pointless ternary in
 Link.
 
+Why do we have separate state for a registerd user to a login user?
+Also the lgout action doesn't need to return a function in the course code.
+
 ## Things changed 
 
 Used Snowpack instead of CRA for faster development.
