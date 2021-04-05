@@ -24,7 +24,7 @@ export async function authUser(req, res) {
 
   res.cookie('Bearer', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: true,
     maxAge: 900000,
   })
@@ -61,7 +61,7 @@ export async function registerUser(req, res) {
 
   res.cookie('Bearer', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: true,
     maxAge: 900000,
   })

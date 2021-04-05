@@ -1,5 +1,8 @@
 const httpProxy = require('http-proxy')
-const proxy = httpProxy.createServer({ target: 'http://localhost:5000' })
+const proxy = httpProxy.createServer({
+  target: 'https://localhost:5555',
+  secure: false,
+})
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
