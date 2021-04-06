@@ -34,3 +34,11 @@ userController sends back more specific responses for not found or wrong
 password.
 
 userController getUserProfile function doesn't need to fetch the user from the DB it already has it in the req from the authMiddleWare.
+
+### Added Caddy to develop on https
+
+Make sure [Caddy](https://caddyserver.com/) is installed on system and run
+`caddy run` in the project root. 
+
+Backend is available on https://localhost:5555
+Frontend is available on https://localhost:3000

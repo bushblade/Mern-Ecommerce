@@ -1,6 +1,13 @@
 import User from '../models/UserModel.js'
 import generateToken from '../utils/generateToken.js'
 
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'Strict', // Strict | Lax | None
+  maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
+}
+
 // @desc            Auth user & get a token
 // @route           POST /api/users/login
 // @access          Public
@@ -22,12 +29,7 @@ export async function authUser(req, res) {
   }
   const token = generateToken(user._id)
 
-  res.cookie('Bearer', token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: true,
-    maxAge: 900000,
-  })
+  res.cookie('Bearer', token, cookieOptions)
 
   return res.json({
     _id: user._id,
@@ -59,12 +61,7 @@ export async function registerUser(req, res) {
 
   const token = generateToken(user._id)
 
-  res.cookie('Bearer', token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: true,
-    maxAge: 900000,
-  })
+  res.cookie('Bearer', token, cookieOptions)
 
   return res.status(201).json({
     _id: user._id,
@@ -80,7 +77,7 @@ export async function registerUser(req, res) {
 // @access          Public
 
 export function logout(req, res) {
-  res.clearCookie('Bearer')
+  res.clearCookie('Bearer', cookieOptions)
   res.status(204).send()
 }
 
