@@ -2,14 +2,7 @@ import jwt from 'jsonwebtoken'
 import User from '../models/UserModel.js'
 
 async function protect(req, res, next) {
-  const authCookie = req.cookies['Bearer']
-
-  const authHeader = req.headers.authorization
-
-  const token =
-    authHeader && authHeader.split(' ')[1]
-      ? authHeader.split(' ')[1]
-      : authCookie
+  const token = req.cookies['Bearer']
 
   if (!token) {
     res.status(401)
