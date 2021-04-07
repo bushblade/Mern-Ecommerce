@@ -36,7 +36,6 @@ export async function authUser(req, res) {
     name: user.name,
     email: user.email,
     isAdmin: user.isAdmin,
-    token,
   })
 }
 
@@ -68,7 +67,6 @@ export async function registerUser(req, res) {
     name: user.name,
     email: user.email,
     isAdmin: user.isAdmin,
-    token,
   })
 }
 
@@ -76,9 +74,9 @@ export async function registerUser(req, res) {
 // @route           DELETE /api/users/logout
 // @access          Public
 
-export function logout(req, res) {
+export function logout(_, res) {
   res.clearCookie('Bearer', cookieOptions)
-  res.status(204).send()
+  res.status(204).send() // 204 no content
 }
 
 // @desc            GET a users profile
