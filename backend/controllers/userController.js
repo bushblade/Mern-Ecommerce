@@ -84,6 +84,39 @@ export function logout(_, res) {
 // @access          Private
 
 export async function getUserProfile(req, res) {
+  if (!req.user) {
+    res.status(400)
+    throw new Error('User not found')
+  }
   // user is added to req object by authMiddleWare
-  res.json(req.user)
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    isAdmin: req.user.isAdmin,
+  })
+}
+
+// @desc            Update a user profile
+// @route           PUT /api/users/profile
+// @access          Private
+
+export async function updateUserProfile(req, res) {
+  if (!req.user) {
+    res.status(400)
+    throw new Error('User not found')
+  }
+  const { name, email, password } = req.body
+  if (name) req.user.name = name
+  if (email) req.user.email = email
+  if (password) req.user.password = password
+
+  await req.user.save()
+
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    isAdmin: req.user.isAdmin,
+  })
 }
