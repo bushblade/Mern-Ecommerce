@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { addToCart } from '../actions/cartActions'
 import { listProductDetails } from '../actions/productActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -20,11 +21,10 @@ function ProductScreen({ match, history }) {
 
   const addToCartHandler = () => {
     if (product.countInStock) {
-      history.push(`/cart/${match.params.id}?qty=${qty}`)
+      dispatch(addToCart(match.params.id, qty))
+      history.push('/cart')
     }
   }
-
-  if (!product) return <h1>Fetching product</h1>
 
   return (
     <>
