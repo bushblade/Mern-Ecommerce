@@ -102,6 +102,7 @@ function CartScreen({ match, location, history }) {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
+                title='proceed to checkout'
                 type='button'
                 className='btn-block'
                 disabled={cartItems.length === 0}
