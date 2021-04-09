@@ -16,6 +16,7 @@ Lot of replicating of same data - useInfo, userDetails, userRegister should be
 just one user.
 
 remove storing of userInfo in LS - stick with cookie to fetch userInfo.
+Add a useEffect in App.jsx to fetch the user when app first loads.
 
 ## Things changed 
 
