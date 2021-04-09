@@ -4,9 +4,10 @@ import { Redirect } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Message from '../components/Message'
+import Loader from '../components/Loader'
 
 function ProfileScreen() {
-  const { userInfo, error } = useSelector((state) => state.user)
+  const { userInfo, error, loading } = useSelector((state) => state.user)
 
   const [email, setEmail] = useState(userInfo?.email)
   const [password, setPassword] = useState('')
@@ -23,8 +24,12 @@ function ProfileScreen() {
     }
   }
 
-  if (!userInfo) {
+  if (!userInfo && !loading) {
     return <Redirect to='/login' />
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (
