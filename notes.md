@@ -10,8 +10,12 @@ utils/formatMoney
 redirect in LoginScreen always evaluates to truthy so pointless ternary in
 Link.
 
-Why do we have separate state for a registerd user to a login user?
-Also the lgout action doesn't need to return a function in the course code.
+Why do we have separate state for a registered user to a login user?
+Also the logout action doesn't need to return a function in the course code.
+Lot of replicating of same data - useInfo, userDetails, userRegister should be
+just one user.
+
+remove storing of userInfo in LS - stick with cookie to fetch userInfo.
 
 ## Things changed 
 

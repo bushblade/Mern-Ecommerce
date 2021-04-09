@@ -1,5 +1,8 @@
 import api from '../utils/api'
 import {
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -56,6 +59,26 @@ export function register(name, email, password) {
     } catch (err) {
       dispatch({
         type: USER_REGISTER_FAIL,
+        payload: err.response?.data?.message || err.message,
+      })
+    }
+  }
+}
+
+export function getUserDetails(id) {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: USER_DETAILS_REQUEST,
+      })
+      const { data } = await api.get(`/users/${id}`)
+      dispatch({
+        type: USER_DETAILS_SUCCESS,
+        payload: data,
+      })
+    } catch (err) {
+      dispatch({
+        type: USER_DETAILS_FAIL,
         payload: err.response?.data?.message || err.message,
       })
     }
