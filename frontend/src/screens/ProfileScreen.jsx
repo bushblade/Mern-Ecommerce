@@ -1,34 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { getUserDetails } from '../actions/userActions'
 
 function ProfileScreen() {
-  const [email, setEmail] = useState('')
+  const { userInfo, error } = useSelector((state) => state.userLogin)
+  const [email, setEmail] = useState(userInfo?.email)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [name, setName] = useState('')
+  const [name, setName] = useState(userInfo?.name)
   const [message, setMessage] = useState(null)
-
-  const dispatch = useDispatch()
-
-  const userDetails = useSelector((state) => state.userDetails)
-  const { loading, error, user } = userDetails
-
-  const userInfo = useSelector((state) => state.userLogin.userInfo)
-
-  useEffect(() => {
-    if (!user.name) {
-      dispatch(getUserDetails('profile'))
-    } else {
-      setName(user.name)
-      setEmail(user.email)
-    }
-  }, [dispatch, user.name, user.email])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -49,7 +32,6 @@ function ProfileScreen() {
         <h2>User Profile</h2>
         {error ? <Message variant='danger'>{error}</Message> : null}
         {message ? <Message variant='danger'>{message}</Message> : null}
-        {loading ? <Loader /> : null}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
             <Form.Label>Name</Form.Label>
