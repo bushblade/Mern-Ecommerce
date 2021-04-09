@@ -40,6 +40,9 @@ password.
 
 userController getUserProfile function doesn't need to fetch the user from the DB it already has it in the req from the authMiddleWare.
 
+Removed userDetails from ProfileScreen as it's a duplicate of userInfo that we
+already have.
+
 ### Added Caddy to develop on https
 
 Make sure [Caddy](https://caddyserver.com/) is installed on system and run

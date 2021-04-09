@@ -19,11 +19,15 @@ const initialState = { userInfo: null }
 export function userLoginReducer(state = initialState, { type, payload }) {
   switch (type) {
     case USER_LOGIN_REQUEST:
+    case USER_DETAILS_REQUEST:
       return { loading: true }
     case USER_LOGIN_SUCCESS:
+    case USER_DETAILS_SUCCESS:
       return { loading: false, userInfo: payload }
     case USER_LOGIN_FAIL:
       return { loading: false, error: payload }
+    case USER_DETAILS_FAIL:
+      return { ...state, loading: false, error: null }
     case USER_LOGOUT:
       return initialState
     default:
@@ -42,19 +46,6 @@ export function userRegisterReducer(state = initialState, { type, payload }) {
       return { loading: false, userInfo: payload }
     case USER_REGISTER_FAIL:
       return { loading: false, error: payload }
-    default:
-      return state
-  }
-}
-
-export function userDetailsReducer(state = { user: {} }, { type, payload }) {
-  switch (type) {
-    case USER_DETAILS_REQUEST:
-      return { ...state, loading: true }
-    case USER_DETAILS_SUCCESS:
-      return { ...state, loading: false, user: payload }
-    case USER_DETAILS_FAIL:
-      return { ...state, loading: false, error: payload }
     default:
       return state
   }

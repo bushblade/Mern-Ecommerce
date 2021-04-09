@@ -7,6 +7,7 @@ import Message from '../components/Message'
 
 function ProfileScreen() {
   const { userInfo, error } = useSelector((state) => state.userLogin)
+
   const [email, setEmail] = useState(userInfo?.email)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')

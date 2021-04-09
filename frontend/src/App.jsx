@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Footer from './components/Footer'
@@ -9,8 +10,15 @@ import LoginScreen from './screens/LoginScreen'
 import ProductScreen from './screens/ProductScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import { getUserDetails } from './actions/userActions'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUserDetails())
+  }, [])
+
   return (
     <BrowserRouter>
       <Header />

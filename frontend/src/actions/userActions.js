@@ -65,13 +65,13 @@ export function register(name, email, password) {
   }
 }
 
-export function getUserDetails(id) {
+export function getUserDetails(idOrEndPoint = 'profile') {
   return async function (dispatch) {
     try {
       dispatch({
         type: USER_DETAILS_REQUEST,
       })
-      const { data } = await api.get(`/users/${id}`)
+      const { data } = await api.get(`/users/${idOrEndPoint}`)
       dispatch({
         type: USER_DETAILS_SUCCESS,
         payload: data,
