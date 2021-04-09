@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
 
 function Header() {
-  const userInfo = useSelector((state) => state.userLogin.userInfo)
+  const userInfo = useSelector((state) => state.user.userInfo)
   const dispatch = useDispatch()
   const logoutHandler = () => {
     dispatch(logout())

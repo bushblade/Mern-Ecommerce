@@ -12,7 +12,7 @@ const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
-  userLogin: userReducer,
+  user: userReducer,
 })
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
   },
-  userLogin: {
+  user: {
     userInfo: localStorage.getItem('userInfo')
       ? JSON.parse(localStorage.getItem('userInfo'))
       : null,
@@ -49,11 +49,8 @@ store.subscribe(() => {
     )
   }
   // if the userLogin changes then set in localStorage
-  if (previousState.userLogin.userInfo !== currentState.userLogin.userInfo) {
-    localStorage.setItem(
-      'userInfo',
-      JSON.stringify(currentState.userLogin.userInfo)
-    )
+  if (previousState.user.userInfo !== currentState.user.userInfo) {
+    localStorage.setItem('userInfo', JSON.stringify(currentState.user.userInfo))
   }
 })
 
