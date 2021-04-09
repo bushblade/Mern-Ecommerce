@@ -7,12 +7,9 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 const isCurrentlyInCart = (state, payload) =>
   state.cartItems.find((item) => item._id === payload._id)
 
-export function cartReducer(
-  state = {
-    cartItems: [],
-  },
-  { type, payload }
-) {
+export const initialCartState = { cartItems: [] }
+
+export function cartReducer(state = initialCartState, { type, payload }) {
   switch (type) {
     case CART_ADD_ITEM:
       if (isCurrentlyInCart(state, payload)) {
@@ -32,7 +29,6 @@ export function cartReducer(
         ...state,
         cartItems: state.cartItems.filter((item) => item._id !== payload),
       }
-
     default:
       return state
   }

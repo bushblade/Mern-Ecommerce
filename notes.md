@@ -16,7 +16,6 @@ Lot of replicating of same data - useInfo, userDetails, userRegister should be
 just one user.
 
 remove storing of userInfo in LS - stick with cookie to fetch userInfo.
-Add a useEffect in App.jsx to fetch the user when app first loads.
 
 ## Things changed 
 
@@ -42,6 +41,14 @@ userController getUserProfile function doesn't need to fetch the user from the D
 
 Removed userDetails from ProfileScreen as it's a duplicate of userInfo that we
 already have.
+
+Removed userRegister and userDetails and just use one user state instead, much
+simpler and less duplicate state/code.
+
+Store JWT in http only cookie instead of LS, no need to attach Auth headers and
+better security.
+
+Add a useEffect in App.jsx to fetch the user when app first loads.
 
 ### Added Caddy to develop on https
 

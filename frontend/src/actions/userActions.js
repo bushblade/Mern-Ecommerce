@@ -16,7 +16,7 @@ export function login(email, password) {
   return async function (dispatch) {
     try {
       // TODO
-      // remove USER_LOGIN_REQUEST and loading state
+      // remove loading state
       dispatch({
         type: USER_LOGIN_REQUEST,
       })
@@ -50,10 +50,6 @@ export function register(name, email, password) {
       const { data } = await api.post('/users', { name, email, password })
       dispatch({
         type: USER_REGISTER_SUCCESS,
-        payload: data,
-      })
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
         payload: data,
       })
     } catch (err) {

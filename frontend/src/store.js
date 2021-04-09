@@ -6,7 +6,7 @@ import {
   productDetailsReducer,
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducer'
-import { userReducer } from './reducers/userReducers'
+import { userReducer, initialUserState } from './reducers/userReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -22,11 +22,10 @@ const initialState = {
       : [],
   },
   user: {
+    ...initialUserState,
     userInfo: localStorage.getItem('userInfo')
       ? JSON.parse(localStorage.getItem('userInfo'))
       : null,
-    error: null,
-    loading: false,
   },
 }
 
@@ -51,6 +50,8 @@ store.subscribe(() => {
     )
   }
   // if the userLogin changes then set in localStorage
+  // NOTE could remove this and rely on fetching from API when app first loads
+  // using token in cookie
   if (previousState.user.userInfo !== currentState.user.userInfo) {
     localStorage.setItem('userInfo', JSON.stringify(currentState.user.userInfo))
   }
