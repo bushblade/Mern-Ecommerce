@@ -10,7 +10,8 @@ utils/formatMoney
 redirect in LoginScreen always evaluates to truthy so pointless ternary in
 Link.
 
-Why do we have separate state for a registered user to a login user?
+Why do we have separate state for a registered user to a login user and update a
+user? its the same logic repeated 4 times with duplicate state.
 Also the logout action doesn't need to return a function in the course code.
 Lot of replicating of same data - useInfo, userDetails, userRegister should be
 just one user.
@@ -28,11 +29,15 @@ Instance of axios in utils/api.js.
 Fixed position Navbar - no janky content shifting on mobile when the menu is
 opened.
 
-Redux subscription for cartItems in LS - simpler less repetitive.
+Redux subscription for cartItems in LS - simpler less repetitive and less bug
+prone.
 
-Redux subscription for userLogin
+Redux subscription for userLogin, whenever the userInfo changes LS is set
+automatically saving a lot of repetition of code so less likely to introduce a
+bug.
 
-Stick with identifying product by \_id  rather than renaming as product.
+Stick with identifying product by \_id  rather than renaming as product for less
+mental overhead.
 
 userController sends back more specific responses for not found or wrong
 password.
@@ -42,8 +47,8 @@ userController getUserProfile function doesn't need to fetch the user from the D
 Removed userDetails from ProfileScreen as it's a duplicate of userInfo that we
 already have.
 
-Removed userRegister and userDetails and just use one user state instead, much
-simpler and less duplicate state/code.
+Removed userRegister, userUpdate and userDetails and just use one user state instead, much
+simpler and less duplicate state/code with less bugs and less mental overhead. 
 
 Store JWT in http only cookie instead of LS, no need to attach Auth headers and
 better security.
