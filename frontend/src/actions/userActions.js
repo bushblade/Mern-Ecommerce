@@ -10,6 +10,9 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants'
 
 export function login(email, password) {
@@ -75,6 +78,26 @@ export function getUserDetails(idOrEndPoint = 'profile') {
     } catch (err) {
       dispatch({
         type: USER_DETAILS_FAIL,
+        payload: err.response?.data?.message || err.message,
+      })
+    }
+  }
+}
+
+export function updateUserProfile(user) {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: USER_UPDATE_PROFILE_REQUEST,
+      })
+      const { data } = await api.put('/users/profile', user)
+      dispatch({
+        type: USER_UPDATE_PROFILE_SUCCESS,
+        payload: data,
+      })
+    } catch (err) {
+      dispatch({
+        type: USER_UPDATE_PROFILE_FAIL,
         payload: err.response?.data?.message || err.message,
       })
     }

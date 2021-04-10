@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import { updateUserProfile } from '../actions/userActions'
 
 function ProfileScreen() {
-  const { userInfo, error, loading } = useSelector((state) => state.user)
+  const { userInfo, error, loading, updated } = useSelector(
+    (state) => state.user
+  )
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState(userInfo?.email)
   const [password, setPassword] = useState('')
@@ -20,7 +24,8 @@ function ProfileScreen() {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      // dispatch update profile
+      setMessage(null)
+      dispatch(updateUserProfile({ id: userInfo._id, name, email, password }))
     }
   }
 
@@ -38,6 +43,7 @@ function ProfileScreen() {
         <h2>User Profile</h2>
         {error ? <Message variant='danger'>{error}</Message> : null}
         {message ? <Message variant='danger'>{message}</Message> : null}
+        {updated ? <Message variant='success'>Profile updated!</Message> : null}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
             <Form.Label>Name</Form.Label>
@@ -60,9 +66,8 @@ function ProfileScreen() {
             />
           </Form.Group>
           <Form.Group controlId='password'>
-            <Form.Label>Password</Form.Label>
+            <Form.Label>New Password</Form.Label>
             <Form.Control
-              required
               type='password'
               placeholder='Enter password'
               value={password}
@@ -70,9 +75,8 @@ function ProfileScreen() {
             />
           </Form.Group>
           <Form.Group controlId='confirmPassword'>
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Confirm New Password</Form.Label>
             <Form.Control
-              required
               type='password'
               placeholder='Confirm password'
               value={confirmPassword}
