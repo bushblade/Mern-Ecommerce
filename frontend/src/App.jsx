@@ -11,6 +11,7 @@ import ProductScreen from './screens/ProductScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import { getUserDetails } from './actions/userActions'
+import ShippingScreen from './screens/ShippingScreen'
 
 function App() {
   const dispatch = useDispatch()
@@ -28,6 +29,7 @@ function App() {
             marginTop: '90px',
           }}
         >
+          <Route path='/shipping' component={ShippingScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />

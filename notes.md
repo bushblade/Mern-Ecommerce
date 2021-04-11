@@ -18,6 +18,9 @@ just one user.
 
 remove storing of userInfo in LS - stick with cookie to fetch userInfo.
 
+If a user logs out then cart items and shipping address stay the same as what is
+in LS, so would be pretty janky if a new user logs in on the same machine.
+
 ## Things changed 
 
 Used Snowpack instead of CRA for faster development.
@@ -54,6 +57,9 @@ Store JWT in http only cookie instead of LS, no need to attach Auth headers and
 better security.
 
 Add a useEffect in App.jsx to fetch the user when app first loads.
+
+Remove from cart action doesn't need to return a function for Thunk, it can just
+return a object.
 
 ### Added Caddy to develop on https
 

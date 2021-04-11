@@ -23,6 +23,10 @@ function LoginScreen({ location }) {
     dispatch(login(email, password))
   }
 
+  if (userInfo && redirect) {
+    return <Redirect to={redirect} />
+  }
+
   if (userInfo) {
     return <Redirect to='/' />
   }

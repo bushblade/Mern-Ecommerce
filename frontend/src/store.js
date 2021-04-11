@@ -5,7 +5,7 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducers'
-import { cartReducer } from './reducers/cartReducer'
+import { cartReducer, initialCartState } from './reducers/cartReducer'
 import { userReducer, initialUserState } from './reducers/userReducers'
 
 const reducer = combineReducers({
@@ -15,11 +15,16 @@ const reducer = combineReducers({
   user: userReducer,
 })
 
+console.log('initial cart state', initialCartState)
+
 const initialState = {
   cart: {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : { ...initialCartState.shippingAddress },
   },
   user: {
     ...initialUserState,
@@ -47,6 +52,15 @@ store.subscribe(() => {
     localStorage.setItem(
       'cartItems',
       JSON.stringify(currentState.cart.cartItems)
+    )
+  }
+  // shipping address in LS
+  if (
+    previousState.cart.shippingAddress !== currentState.cart.shippingAddress
+  ) {
+    localStorage.setItem(
+      'shippingAddress',
+      JSON.stringify(currentState.cart.shippingAddress)
     )
   }
   // if the userLogin changes then set in localStorage
