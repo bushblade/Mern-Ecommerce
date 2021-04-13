@@ -15,22 +15,19 @@ const reducer = combineReducers({
   user: userReducer,
 })
 
-console.log('initial cart state', initialCartState)
+const { cartItems, shippingAddress, userInfo } = localStorage
+const { parse } = JSON
 
 const initialState = {
   cart: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
-      : [],
-    shippingAddress: localStorage.getItem('shippingAddress')
-      ? JSON.parse(localStorage.getItem('shippingAddress'))
+    cartItems: cartItems ? parse(cartItems) : [],
+    shippingAddress: shippingAddress
+      ? parse(shippingAddress)
       : { ...initialCartState.shippingAddress },
   },
   user: {
     ...initialUserState,
-    userInfo: localStorage.getItem('userInfo')
-      ? JSON.parse(localStorage.getItem('userInfo'))
-      : null,
+    userInfo: userInfo ? parse(userInfo) : null,
   },
 }
 

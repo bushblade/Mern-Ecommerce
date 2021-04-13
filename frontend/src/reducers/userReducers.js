@@ -21,15 +21,14 @@ export function userReducer(state = initialUserState, { type, payload }) {
         ...state,
         loading: false,
         userInfo: payload,
-        updated: true,
         error: null,
+        updated: true,
       }
     case UC.USER_REGISTER_FAIL:
     case UC.USER_LOGIN_FAIL:
     case UC.USER_UPDATE_PROFILE_FAIL:
-      return { loading: false, error: payload }
+      return { ...state, loading: false, error: payload }
     case UC.USER_DETAILS_FAIL:
-      return { ...state, loading: false, error: null }
     case UC.USER_LOGOUT:
       return initialUserState
     default:
