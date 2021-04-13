@@ -59,6 +59,12 @@ store.subscribe(() => {
       'shippingAddress',
       JSON.stringify(currentState.cart.shippingAddress)
     )
+  } // paymentMethod in LS
+  if (previousState.cart.paymentMethod !== currentState.cart.paymentMethod) {
+    localStorage.setItem(
+      'paymentMethod',
+      JSON.stringify(currentState.cart.paymentMethod)
+    )
   }
   // if the userLogin changes then set in localStorage
   // NOTE could remove this and rely on fetching from API when app first loads

@@ -2,6 +2,7 @@ import api from '../utils/api'
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from '../constants/cartConstants'
 
@@ -32,5 +33,12 @@ export function saveShippingAddress(data) {
   return {
     type: CART_SAVE_SHIPPING_ADDRESS,
     payload: data,
+  }
+}
+
+export function savePaymentMethod(method) {
+  return {
+    type: CART_SAVE_PAYMENT_METHOD,
+    payload: method,
   }
 }
