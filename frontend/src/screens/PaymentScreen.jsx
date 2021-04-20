@@ -12,7 +12,7 @@ function PaymentScreen({ history }) {
 
   if (!shippingAddress) history.push('/shipping')
 
-  const [paymentMethod, setPaymentMethod] = useState('paypal')
+  const [paymentMethod, setPaymentMethod] = useState('PayPal')
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -33,7 +33,7 @@ function PaymentScreen({ history }) {
               label='PayPal or Credit Card'
               id='PayPal'
               name='paymentMethod'
-              value='Paypal'
+              value='PayPal'
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>

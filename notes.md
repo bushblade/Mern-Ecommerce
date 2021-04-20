@@ -61,6 +61,10 @@ Add a useEffect in App.jsx to fetch the user when app first loads.
 Remove from cart action doesn't need to return a function for Thunk, it can just
 return a object.
 
+In OrderScreen, calculate total prices in Numbers and then ouput in JSX as
+String, rather than switch between numbers and strings in the calculation.
+Also don't mutate the cart object.
+
 ### Added Caddy to develop on https
 
 Make sure [Caddy](https://caddyserver.com/) is installed on system and run
