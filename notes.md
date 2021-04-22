@@ -7,19 +7,21 @@ Don't redirect to /cart when clicking Add To Cart
 prices in cents and convert for better calculation accuracy and formatting using
 utils/formatMoney
 
-redirect in LoginScreen always evaluates to truthy so pointless ternary in
-Link.
+redirect in LoginScreen always evaluates to truthy so pointless ternary in Link.
 
 Why do we have separate state for a registered user to a login user and update a
-user? its the same logic repeated 4 times with duplicate state.
-Also the logout action doesn't need to return a function in the course code.
-Lot of replicating of same data - useInfo, userDetails, userRegister should be
-just one user.
+user? its the same logic repeated 4 times with duplicate state.  Also the logout
+action doesn't need to return a function in the course code.  Lot of replicating
+of same data - useInfo, userDetails, userRegister should be just one user.
 
 remove storing of userInfo in LS - stick with cookie to fetch userInfo.
 
 If a user logs out then cart items and shipping address stay the same as what is
 in LS, so would be pretty janky if a new user logs in on the same machine.
+
+Calculate order totals on backend, not in the frontend.
+This could be done automatically when a user adds to their cart in the cart
+model (when implemented).
 
 ## Things changed 
 
@@ -45,13 +47,15 @@ mental overhead.
 userController sends back more specific responses for not found or wrong
 password.
 
-userController getUserProfile function doesn't need to fetch the user from the DB it already has it in the req from the authMiddleWare.
+userController getUserProfile function doesn't need to fetch the user from the
+DB it already has it in the req from the authMiddleWare.
 
 Removed userDetails from ProfileScreen as it's a duplicate of userInfo that we
 already have.
 
-Removed userRegister, userUpdate and userDetails and just use one user state instead, much
-simpler and less duplicate state/code with less bugs and less mental overhead. 
+Removed userRegister, userUpdate and userDetails and just use one user state
+instead, much simpler and less duplicate state/code with less bugs and less
+mental overhead. 
 
 Store JWT in http only cookie instead of LS, no need to attach Auth headers and
 better security.
@@ -62,8 +66,8 @@ Remove from cart action doesn't need to return a function for Thunk, it can just
 return a object.
 
 In OrderScreen, calculate total prices in Numbers and then ouput in JSX as
-String, rather than switch between numbers and strings in the calculation.
-Also don't mutate the cart object.
+String, rather than switch between numbers and strings in the calculation.  Also
+don't mutate the cart object.
 
 ### Added Caddy to develop on https
 

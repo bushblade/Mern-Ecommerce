@@ -3,7 +3,12 @@ import * as UC from '../constants/userConstants'
 // TODO
 // remove loading state
 
-export const initialUserState = { userInfo: null, error: null, loading: false }
+export const initialUserState = {
+  userInfo: null,
+  error: null,
+  loading: false,
+  updated: null,
+}
 
 export function userReducer(state = initialUserState, { type, payload }) {
   switch (type) {
