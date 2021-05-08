@@ -23,6 +23,8 @@ Calculate order totals on backend, not in the frontend.
 This could be done automatically when a user adds to their cart in the cart
 model (when implemented).
 
+Sanitize user inputs to prevent XXS
+
 ## Things changed 
 
 Used Snowpack instead of CRA for faster development.
